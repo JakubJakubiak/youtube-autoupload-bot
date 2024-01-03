@@ -39,41 +39,26 @@ def upload_video(video_path):
     wait_and_click(bot, '//*[@id="enable-premiere-checkbox"]')
     print("3 ///// //*[@id=enable-premiere-checkbox]')")
     
-
     wait_and_click(bot, '//*[@id="done-button"]')
-    print("4 ///////done-button")
+    print("4 ///////[@id=done-button]")
 
     time.sleep(2)
     bot.quit()
     time.sleep(2)
 
 def main():
-    print("\033[1;31;40m IMPORTANT: Put one or more videos in the *videos* folder in the bot directory. Please make sure to name the video files like this --> Ex: vid1.mp4 vid2.mp4 vid3.mp4 etc..")
-
-    answer = 2
-
-    if int(answer) == 1:
-        nameofvid = input("\033[1;33;40m Put the name of the video you want to upload (Ex: vid.mp4 or myshort.mp4 etc..) ---> ")
-        howmany = input("\033[1;33;40m How many times you want to upload this video ---> ")
-
-        for i in range(int(howmany)):
-            video_path = os.path.abspath(os.path.join('videos', nameofvid))
-            upload_video(video_path)
-
-    elif int(answer) == 2:
-        print("\033[1;31;40m IMPORTANT: Please make sure the name of the videos is like this: vid1.mp4, vid2.mp4, vid3.mp4 ...  etc")
-        
-        dir_path = '.\\videos'
-        videos = [path for path in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, path))]
-
-        if not videos:
-            print("No videos found in the videos folder.")
-            return
-
-        print("   ", len(videos), " Videos found in the videos folder, ready to upload...")
-        time.sleep(6)
-
-        for video in videos:
+    print("\033[1;31;40m IMPORTANT: Put one or more videos in the *videos* folder in the bot directory.")
+    dir_path = '.\\videos'
+    videos = [path for path in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, path))]  
+    
+    if not videos:
+        print("No videos found in the videos folder.")
+        return  
+    
+    print("   ", len(videos), " Videos found in the videos folder, ready to upload...")
+    time.sleep(1)   
+    
+    for video in videos:
             video_path = os.path.abspath(os.path.join('videos', video))
             upload_video(video_path)
 
